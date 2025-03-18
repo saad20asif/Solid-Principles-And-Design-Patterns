@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class Player : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private IHealth _health;
     [SerializeField] private HealthBar _healthBar;
@@ -9,7 +9,6 @@ public class Player : MonoBehaviour, IDamageable
     [Inject]
     public void Construct(IHealth health, HealthBar healthBar)
     {
-        print("Player: Construct called");
         _health = health;
         _healthBar = healthBar;
         _healthBar.Initialize(_health); // Initialize health bar
@@ -23,12 +22,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        Debug.Log("Player died!");
-        // Add death logic (e.g., disable controls, play animation)
-    }
-
-    public void AttackEnemy(Enemy enemy, int damage)
-    {
-        enemy.ApplyDamage(damage); // Player attacks enemy
+        Debug.Log("Enemy died!");
+        Destroy(gameObject); // Destroy enemy on death
     }
 }

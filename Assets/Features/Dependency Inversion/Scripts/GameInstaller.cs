@@ -1,31 +1,28 @@
-using Zenject; // Import Extenject namespace
+using UnityEngine;
+using Zenject;
 
-// GameInstaller is a MonoInstaller, meaning it's a Unity component that sets up bindings.
 public class GameInstaller : MonoInstaller
 {
+    [SerializeField] private Player _player; // Assign in Inspector
+    [SerializeField] private Enemy _enemy;   // Assign in Inspector
 
-    // Override the InstallBindings method to define dependency bindings.
     public override void InstallBindings()
     {
+        print("GameInstaller: InstallBindings started");
+        // Create a new instance of Health for every class that asks for an IHealth
+        Container.Bind<IHealth>().To<Health>().AsTransient();
+        //// Bind Player
+        //Container.Bind<IHealth>().To<Health>().AsSingle(); // Player health
+        //Container.Bind<Player>().FromInstance(_player).AsSingle(); // Player instance
+        //Container.Bind<HealthBar>().FromComponentInChildren().WhenInjectedInto<Player>(); // Player HealthBar
+        //print("GameInstaller: Player bindings completed");
 
-        // Bind AnimationController:
-        // - FromComponentInHierarchy(): Look for an AnimationController in the scene.
-        // - AsSingle(): Ensure only one instance exists (singleton).
-        Container.Bind<AnimationController>().FromComponentInHierarchy().AsSingle();
+        //// Bind Enemy
+        //Container.Bind<IHealth>().To<Health>().FromNew().AsSingle(); // Enemy health
+        //Container.Bind<Enemy>().FromInstance(_enemy).AsSingle(); // Enemy instance
+        //Container.Bind<HealthBar>().FromComponentInChildren().WhenInjectedInto<Enemy>(); // Enemy HealthBar
+        //print("GameInstaller: Enemy bindings completed");
 
-        // Bind IWeapon to Sword:
-        // - To<Sword>(): Use the Sword class when IWeapon is requested.
-        // - AsTransient(): Create a new instance every time IWeapon is injected.
-        Container.Bind<IWeapon>().To<Sword>().AsTransient();
-
-        // Bind IHealth to Health:
-        // - To<Health>(): Use the Health class when IHealth is requested.
-        // - AsSingle(): Ensure only one instance exists (singleton).
-        //Container.Bind<IHealth>().To<Health>().AsSingle();
-
-        // Bind Player:
-        // - FromComponentInHierarchy(): Look for a Player component in the scene.
-        // - AsSingle(): Ensure only one instance exists (singleton).
-        Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
+        //print("GameInstaller: InstallBindings completed");
     }
 }
