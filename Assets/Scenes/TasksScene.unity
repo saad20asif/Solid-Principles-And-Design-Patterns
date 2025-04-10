@@ -129,8 +129,9 @@ GameObject:
   m_Component:
   - component: {fileID: 94820101}
   - component: {fileID: 94820102}
+  - component: {fileID: 94820103}
   m_Layer: 0
-  m_Name: Task Manager
+  m_Name: Task Examples
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,6 +164,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c9e62f0c9ac4e4fb70234fe06325f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &94820103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94820100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78bbda694697804d9d97873235ad0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useUniTask: 0
 --- !u!1 &202669863
 GameObject:
   m_ObjectHideFlags: 0

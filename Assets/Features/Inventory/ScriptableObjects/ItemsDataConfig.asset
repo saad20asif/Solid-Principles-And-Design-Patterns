@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe92aacc4424fc49a4e2f9deddb6838, type: 3}
+  m_Name: ItemsDataConfig
+  m_EditorClassIdentifier: 
+  InventoryItems:
+  - Name: Basic Blade
+    Icon: icon_basic
+    Amount: 25
+    Currency: "coins\r"
+  - Name: Advanced Sword
+    Icon: icon_advanced
+    Amount: 50
+    Currency: "gems\r"
+  - Name: Legendary Saber
+    Icon: icon_legendary
+    Amount: 100
+    Currency: coins
+  - Name: Legendary Saber
+    Icon: icon_legendary
+    Amount: 12222
+    Currency: coins
