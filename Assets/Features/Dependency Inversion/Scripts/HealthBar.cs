@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class HealthBar : MonoBehaviour
 {
@@ -11,11 +10,18 @@ public class HealthBar : MonoBehaviour
     {
         _health = health;
         _health.OnHealthChanged += UpdateHealth;
-        UpdateHealth(_health.CurrentHealth); // Initialize UI
+        _slider.maxValue = _health.CurrentHealth;
+        _slider.value = _health.CurrentHealth;
     }
 
-    private void UpdateHealth(int health)
+    private void UpdateHealth(int newHealth)
     {
-        _slider.value = health;
+        _slider.value = newHealth;
+    }
+
+    private void OnDestroy()
+    {
+        if (_health != null)
+            _health.OnHealthChanged -= UpdateHealth;
     }
 }

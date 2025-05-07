@@ -11,11 +11,13 @@ public class CombatSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            print("_enemy damage");
             _enemy.ApplyDamage(_playerDamage); // Player attacks enemy
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            print("_player damage");
             _player.ApplyDamage(_enemyDamage); // Enemy attacks player
         }
     }

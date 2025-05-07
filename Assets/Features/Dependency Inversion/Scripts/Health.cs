@@ -1,4 +1,3 @@
-// Health.cs
 using System;
 using UnityEngine;
 
@@ -12,15 +11,9 @@ public class Health : IHealth
         CurrentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amount)
     {
-        CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
-        OnHealthChanged?.Invoke(CurrentHealth);
-    }
-
-    public void Heal(int amount)
-    {
-        CurrentHealth += amount;
+        CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
         OnHealthChanged?.Invoke(CurrentHealth);
     }
 }

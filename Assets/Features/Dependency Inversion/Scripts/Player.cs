@@ -1,18 +1,20 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : SerializedMonoBehaviour, IDamageable
 {
     [SerializeField] private IHealth _health;
     [SerializeField] private HealthBar _healthBar;
 
     [Inject]
-    public void Construct(IHealth health, HealthBar healthBar)
+    public void Construct(
+        IHealth health,
+        [Inject(Id = "PlayerHealthBar")] HealthBar healthBar)
     {
-        print("Player: Construct called");
         _health = health;
         _healthBar = healthBar;
-        _healthBar.Initialize(_health); // Initialize health bar
+        _healthBar.Initialize(_health);
     }
 
     public void ApplyDamage(int damage)
@@ -21,14 +23,5 @@ public class Player : MonoBehaviour, IDamageable
         if (_health.CurrentHealth <= 0) Die();
     }
 
-    private void Die()
-    {
-        Debug.Log("Player died!");
-        // Add death logic (e.g., disable controls, play animation)
-    }
-
-    public void AttackEnemy(Enemy enemy, int damage)
-    {
-        enemy.ApplyDamage(damage); // Player attacks enemy
-    }
+    private void Die() => Debug.Log("Player died!");
 }

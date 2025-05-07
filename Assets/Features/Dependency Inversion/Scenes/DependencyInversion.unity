@@ -373,7 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 434899557}
-  - component: {fileID: 434899556}
+  - component: {fileID: 434899558}
   m_Layer: 0
   m_Name: GameInstaller
   m_TagString: Untagged
@@ -381,20 +381,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &434899556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434899555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed684c9bc215e37408a5514383b80406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 1680501787}
-  _enemy: {fileID: 1882029173}
 --- !u!4 &434899557
 Transform:
   m_ObjectHideFlags: 0
@@ -410,6 +396,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &434899558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434899555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed684c9bc215e37408a5514383b80406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealthBarPrefab: {fileID: 1640909342}
+  _enemyHealthBarPrefab: {fileID: 960069886}
+  _playerUIParent: {fileID: 1680501789}
+  _enemyUIParent: {fileID: 1882029172}
 --- !u!1 &491384316
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1680501787}
   _enemy: {fileID: 1882029173}
-  _playerDamage: 10
+  _playerDamage: 5
   _enemyDamage: 5
 --- !u!4 &801082778
 Transform:
@@ -727,7 +729,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &960069888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 434899556}
+  - {fileID: 434899558}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1199,7 +1201,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &1640909344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1275,6 +1277,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3866b94dc51ece40a07a22b551137e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _health
+      Entry: 6
+      Data: 
   _healthBar: {fileID: 0}
 --- !u!4 &1680501789
 Transform:
@@ -1328,7 +1342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 461.7}
+  m_AnchoredPosition: {x: 0, y: 180.7}
   m_SizeDelta: {x: 160, y: 45.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1709071465
@@ -1417,7 +1431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -139.5}
+  m_AnchoredPosition: {x: 0, y: -223.12}
   m_SizeDelta: {x: 160, y: 45.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1839064677
@@ -1517,6 +1531,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995c554b2af05f64bb6333e65db3e3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _health
+      Entry: 6
+      Data: 
   _healthBar: {fileID: 0}
 --- !u!1 &1907232440
 GameObject:

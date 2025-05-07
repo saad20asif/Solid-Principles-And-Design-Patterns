@@ -1,17 +1,20 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : SerializedMonoBehaviour, IDamageable
 {
     [SerializeField] private IHealth _health;
     [SerializeField] private HealthBar _healthBar;
 
     [Inject]
-    public void Construct(IHealth health, HealthBar healthBar)
+    public void Construct(
+        IHealth health,
+        [Inject(Id = "EnemyHealthBar")] HealthBar healthBar)
     {
         _health = health;
         _healthBar = healthBar;
-        _healthBar.Initialize(_health); // Initialize health bar
+        _healthBar.Initialize(_health);
     }
 
     public void ApplyDamage(int damage)
@@ -20,9 +23,5 @@ public class Enemy : MonoBehaviour, IDamageable
         if (_health.CurrentHealth <= 0) Die();
     }
 
-    private void Die()
-    {
-        Debug.Log("Enemy died!");
-        Destroy(gameObject); // Destroy enemy on death
-    }
+    private void Die() => Destroy(gameObject);
 }

@@ -3,26 +3,31 @@ using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
-    [SerializeField] private Player _player; // Assign in Inspector
-    [SerializeField] private Enemy _enemy;   // Assign in Inspector
+    [SerializeField] private HealthBar _playerHealthBarPrefab;
+    [SerializeField] private HealthBar _enemyHealthBarPrefab;
+    [SerializeField] private Transform _playerUIParent;
+    [SerializeField] private Transform _enemyUIParent;
 
     public override void InstallBindings()
     {
-        print("GameInstaller: InstallBindings started");
-        // Create a new instance of Health for every class that asks for an IHealth
-        Container.Bind<IHealth>().To<Health>().AsTransient();
-        //// Bind Player
-        //Container.Bind<IHealth>().To<Health>().AsSingle(); // Player health
-        //Container.Bind<Player>().FromInstance(_player).AsSingle(); // Player instance
-        //Container.Bind<HealthBar>().FromComponentInChildren().WhenInjectedInto<Player>(); // Player HealthBar
-        //print("GameInstaller: Player bindings completed");
+        // Health system (shared)
+        Container.Bind<IHealth>().To<Health>().AsTransient()
+            .WithArguments(100); // Initial health value
 
-        //// Bind Enemy
-        //Container.Bind<IHealth>().To<Health>().FromNew().AsSingle(); // Enemy health
-        //Container.Bind<Enemy>().FromInstance(_enemy).AsSingle(); // Enemy instance
-        //Container.Bind<HealthBar>().FromComponentInChildren().WhenInjectedInto<Enemy>(); // Enemy HealthBar
-        //print("GameInstaller: Enemy bindings completed");
+        // Player health bar (specific instance)
+        Container.Bind<HealthBar>().WithId("PlayerHealthBar")
+            .FromComponentInNewPrefab(_playerHealthBarPrefab)
+            .UnderTransform(_playerUIParent) // Parent to UI canvas
+            .AsCached();
 
-        //print("GameInstaller: InstallBindings completed");
+        // Enemy health bar (specific instance)
+        Container.Bind<HealthBar>().WithId("EnemyHealthBar")
+            .FromComponentInNewPrefab(_enemyHealthBarPrefab)
+            .UnderTransform(_enemyUIParent) // Parent to UI canvas
+            .AsCached();
+
+        // Player/Enemy bindings
+        //Container.BindInterfacesAndSelfTo<Player>().FromComponentInHierarchy().AsSingle();
+        //Container.BindInterfacesAndSelfTo<Enemy>().FromComponentInHierarchy().AsSingle();
     }
 }
