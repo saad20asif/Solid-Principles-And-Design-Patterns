@@ -8,9 +8,7 @@ public class Player : SerializedMonoBehaviour, IDamageable
     [SerializeField] private HealthBar _healthBar;
 
     [Inject]
-    public void Construct(
-        IHealth health,
-        [Inject(Id = "PlayerHealthBar")] HealthBar healthBar)
+    public void Construct(IHealth health, [Inject(Id = "PlayerHealthBar")] HealthBar healthBar)
     {
         _health = health;
         _healthBar = healthBar;
@@ -23,5 +21,5 @@ public class Player : SerializedMonoBehaviour, IDamageable
         if (_health.CurrentHealth <= 0) Die();
     }
 
-    private void Die() => Debug.Log("Player died!");
+    private void Die() => Destroy(gameObject);
 }

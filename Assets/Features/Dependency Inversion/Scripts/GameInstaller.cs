@@ -19,7 +19,7 @@ public class GameInstaller : MonoInstaller
             .FromComponentInNewPrefab(_playerHealthBarPrefab)
             .UnderTransform(_playerUIParent) // Parent to UI canvas
             .AsCached();
-
+        
         // Enemy health bar (specific instance)
         Container.Bind<HealthBar>().WithId("EnemyHealthBar")
             .FromComponentInNewPrefab(_enemyHealthBarPrefab)
